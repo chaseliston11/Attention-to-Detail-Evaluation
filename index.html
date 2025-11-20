@@ -394,4 +394,391 @@
         <div>Time vs. Benchmark</div>
       </div>
       <div class="results-grid">
-        <div>Section 1 · D
+        <div>Section 1 · Data Detail</div>
+        <div id="s1Accuracy"></div>
+        <div id="s1Time"></div>
+      </div>
+      <div class="results-grid">
+        <div>Section 2 · Reading Comprehension</div>
+        <div id="s2Accuracy"></div>
+        <div id="s2Time"></div>
+      </div>
+      <div class="results-grid">
+        <div>Section 3 · Instruction Following</div>
+        <div id="s3Accuracy"></div>
+        <div id="s3Time"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Interpretation & Improvement Areas</h3>
+      <p id="overallSummary"></p>
+      <ul id="improvementList"></ul>
+      <h4>Section 3 Behavioral Details</h4>
+      <ul id="behaviorList"></ul>
+      <p class="small">
+        Note: Benchmarks are placeholders. For real usage with candidates/employees,
+        you can replace these with your own averages based on collected data.
+      </p>
+    </div>
+
+    <div class="btn-row">
+      <button class="secondary" onclick="location.reload()">Restart Assessment</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ----- CONFIG: BENCHMARK TIMES (SECONDS) -----
+  const BENCHMARKS = {
+    section1: 90,   // 1.5 minutes
+    section2: 120,  // 2 minutes
+    section3: 90    // 1.5 minutes
+  };
+
+  const state = {
+    currentSection: "intro",
+    startTimes: {},
+    durations: {},
+    scores: {},
+    section3Behavior: {
+      colorEverNonEmpty: false,
+      colorWasCleared: false,
+      colorEditedAfterClear: false,
+      checkboxEverChecked: false,
+      checkboxUncheckedAfterCheck: false
+    }
+  };
+
+  function showSection(id) {
+    document.querySelectorAll(".section").forEach(sec => {
+      sec.classList.remove("active");
+    });
+    const target = document.getElementById(id);
+    if (target) {
+      target.classList.add("active");
+      state.currentSection = id;
+    }
+  }
+
+  function startTimer(sectionId) {
+    state.startTimes[sectionId] = performance.now();
+  }
+
+  function stopTimer(sectionId) {
+    const start = state.startTimes[sectionId];
+    if (!start) return;
+    const end = performance.now();
+    const seconds = (end - start) / 1000;
+    state.durations[sectionId] = seconds;
+  }
+
+  function formatSeconds(sec) {
+    return sec.toFixed(1) + "s";
+  }
+
+  function badgeForTime(sec, benchmark) {
+    if (!benchmark) return "";
+
+    if (sec <= benchmark * 0.8) {
+      return `<span class="badge-good">Faster than average</span>`;
+    } else if (sec <= benchmark * 1.2) {
+      return `<span class="badge-warn">Around average</span>`;
+    } else {
+      return `<span class="badge-bad">Slower than average</span>`;
+    }
+  }
+
+  function badgeForAccuracy(pct) {
+    if (pct >= 90) {
+      return `<span class="badge-good">${pct}%</span>`;
+    } else if (pct >= 70) {
+      return `<span class="badge-warn">${pct}%</span>`;
+    } else {
+      return `<span class="badge-bad">${pct}%</span>`;
+    }
+  }
+
+  // SCORING: SECTION 1
+  function scoreSection1() {
+    // Correct error rows: row2, row4, row6
+    const correctSet = new Set(["row2", "row4", "row6"]);
+    const selected = Array.from(document.querySelectorAll('input[name="s1"]:checked'))
+      .map(cb => cb.value);
+
+    const selectedSet = new Set(selected);
+    let allMatch = true;
+
+    correctSet.forEach(v => {
+      if (!selectedSet.has(v)) {
+        allMatch = false;
+      }
+    });
+    selectedSet.forEach(v => {
+      if (!correctSet.has(v)) {
+        allMatch = false;
+      }
+    });
+
+    const total = correctSet.size;
+    const correct = allMatch ? total : 0; // harsh scoring
+
+    const accuracyPct = (correct / total) * 100;
+    state.scores.section1 = { correct, total, accuracyPct };
+  }
+
+  // SCORING: SECTION 2 (Laura)
+  function normalizeAnswer(str) {
+    return str.trim().toLowerCase().replace(/\s+/g, " ");
+  }
+
+  function scoreSection2() {
+    const a1 = normalizeAnswer(document.getElementById("q1").value);
+    const a2 = normalizeAnswer(document.getElementById("q2").value);
+    const a3 = normalizeAnswer(document.getElementById("q3").value);
+
+    let correct = 0;
+    let total = 3;
+
+    // Q1: green apples
+    if (a1.includes("green") && a1.includes("apple")) correct++;
+
+    // Q2: her mom did not say
+    if (
+      a2.includes("did not say") ||
+      a2.includes("didn't say") ||
+      a2.includes("not specified") ||
+      a2.includes("unspecified")
+    ) {
+      correct++;
+    }
+
+    // Q3: 2:47 PM
+    if (a3.includes("2:47") || a3.includes("2 47")) correct++;
+
+    const accuracyPct = (correct / total) * 100;
+    state.scores.section2 = { correct, total, accuracyPct };
+  }
+
+  // SCORING: SECTION 3
+  function scoreSection3() {
+    const colorValue = document.getElementById("s3Color").value.trim();
+    const checkboxes = Array.from(document.querySelectorAll('input[name="s3"]:checked')).map(cb => cb.value);
+
+    let total = 3;
+    let correct = 0;
+
+    // Instruction around favorite color:
+    // They should have typed something (everNonEmpty), cleared it (wasCleared),
+    // not edited after clearing, and final field must be blank.
+    const behavior = state.section3Behavior;
+    const colorCondition =
+      behavior.colorEverNonEmpty &&
+      behavior.colorWasCleared &&
+      !behavior.colorEditedAfterClear &&
+      colorValue === "";
+
+    if (colorCondition) correct++;
+
+    // Exactly two boxes should be checked
+    if (checkboxes.length === 2) correct++;
+
+    // One must be C and A must not be checked
+    const hasC = checkboxes.includes("C");
+    const hasA = checkboxes.includes("A");
+    if (hasC && !hasA) correct++;
+
+    const accuracyPct = (correct / total) * 100;
+    state.scores.section3 = { correct, total, accuracyPct };
+  }
+
+  function buildResults() {
+    // Section 1
+    const s1 = state.scores.section1 || { accuracyPct: 0 };
+    const s1TimeSec = state.durations.section1 || 0;
+    document.getElementById("s1Accuracy").innerHTML = badgeForAccuracy(Math.round(s1.accuracyPct));
+    document.getElementById("s1Time").innerHTML =
+      `${formatSeconds(s1TimeSec)}<br/><span class="small">${badgeForTime(s1TimeSec, BENCHMARKS.section1)}</span>`;
+
+    // Section 2
+    const s2 = state.scores.section2 || { accuracyPct: 0 };
+    const s2TimeSec = state.durations.section2 || 0;
+    document.getElementById("s2Accuracy").innerHTML = badgeForAccuracy(Math.round(s2.accuracyPct));
+    document.getElementById("s2Time").innerHTML =
+      `${formatSeconds(s2TimeSec)}<br/><span class="small">${badgeForTime(s2TimeSec, BENCHMARKS.section2)}</span>`;
+
+    // Section 3
+    const s3 = state.scores.section3 || { accuracyPct: 0 };
+    const s3TimeSec = state.durations.section3 || 0;
+    document.getElementById("s3Accuracy").innerHTML = badgeForAccuracy(Math.round(s3.accuracyPct));
+    document.getElementById("s3Time").innerHTML =
+      `${formatSeconds(s3TimeSec)}<br/><span class="small">${badgeForTime(s3TimeSec, BENCHMARKS.section3)}</span>`;
+
+    // Overall narrative
+    const overallSummary = document.getElementById("overallSummary");
+    const improvementList = document.getElementById("improvementList");
+    const behaviorList = document.getElementById("behaviorList");
+    improvementList.innerHTML = "";
+    behaviorList.innerHTML = "";
+
+    const avgAccuracy = (
+      (s1.accuracyPct + s2.accuracyPct + s3.accuracyPct) / 3
+    ).toFixed(1);
+
+    overallSummary.textContent =
+      `Your overall accuracy across all sections was ${avgAccuracy}%. `
+      + `This test is intentionally difficult, so use these results to identify where additional focus on detail and comprehension will be most helpful.`;
+
+    // Targeted improvement tips
+    if (s1.accuracyPct < 90) {
+      const li = document.createElement("li");
+      li.textContent =
+        "Section 1 (Data Detail): Practice scanning for subtle inconsistencies across multiple fields (name, ID, state, formatting). Slow down and compare items line by line.";
+      improvementList.appendChild(li);
+    }
+
+    if (s2.accuracyPct < 90) {
+      const li = document.createElement("li");
+      li.textContent =
+        "Section 2 (Reading Comprehension): Work on retaining specific facts (item types and exact times). Try mentally summarizing the scenario before moving on.";
+      improvementList.appendChild(li);
+    }
+
+    if (s3.accuracyPct < 90) {
+      const li = document.createElement("li");
+      li.textContent =
+        "Section 3 (Instructions): Focus on reading all instructions fully before acting. Many errors come from acting too quickly after only skimming.";
+      improvementList.appendChild(li);
+    }
+
+    if (
+      s1.accuracyPct >= 90 &&
+      s2.accuracyPct >= 90 &&
+      s3.accuracyPct >= 90
+    ) {
+      const li = document.createElement("li");
+      li.textContent =
+        "Strong performance across all sections. Continue to balance speed with accuracy—particularly when stakes are high or details are critical.";
+      improvementList.appendChild(li);
+    }
+
+    // Section 3 behavioral details
+    const b = state.section3Behavior;
+
+    const li1 = document.createElement("li");
+    li1.textContent = b.colorEverNonEmpty
+      ? "Favorite color box: You entered a value at least once."
+      : "Favorite color box: You never entered a value, which does not follow the instruction to type your favorite color before erasing it.";
+    behaviorList.appendChild(li1);
+
+    const li2 = document.createElement("li");
+    li2.textContent = b.colorWasCleared
+      ? "Favorite color box: You cleared the text at least once."
+      : "Favorite color box: The text was never fully cleared.";
+    behaviorList.appendChild(li2);
+
+    const li3 = document.createElement("li");
+    li3.textContent = b.colorEditedAfterClear
+      ? "Favorite color box: You typed again after erasing, which goes against the instruction not to add details after clearing the field."
+      : "Favorite color box: You did not type again after clearing the field.";
+    behaviorList.appendChild(li3);
+
+    const li4 = document.createElement("li");
+    li4.textContent = b.checkboxEverChecked
+      ? "Checkboxes: At least one checkbox was selected at some point."
+      : "Checkboxes: No checkbox was ever selected.";
+    behaviorList.appendChild(li4);
+
+    const li5 = document.createElement("li");
+    li5.textContent = b.checkboxUncheckedAfterCheck
+      ? "Checkboxes: At some point, all previously selected boxes were cleared, suggesting changes after initial actions."
+      : "Checkboxes: There is no indication that all selected boxes were later cleared.";
+    behaviorList.appendChild(li5);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Intro -> Section1
+    document.getElementById("startBtn").addEventListener("click", () => {
+      showSection("section1");
+      startTimer("section1");
+    });
+
+    // Section 1 -> Section 2
+    document.getElementById("s1Next").addEventListener("click", () => {
+      stopTimer("section1");
+      scoreSection1();
+      showSection("section2");
+      // timer for section2 starts after reading is hidden (when questions begin)
+    });
+
+    // Hide reading & show questions (start timer)
+    document.getElementById("hideReadingBtn").addEventListener("click", () => {
+      const block = document.getElementById("readingBlock");
+      const actions = document.getElementById("readingActions");
+      const questions = document.getElementById("readingQuestions");
+      block.style.display = "none";
+      actions.style.display = "none";
+      questions.style.display = "block";
+      startTimer("section2");
+    });
+
+    // Section 2 -> Section 3
+    document.getElementById("s2Next").addEventListener("click", () => {
+      stopTimer("section2");
+      scoreSection2();
+      showSection("section3");
+      startTimer("section3");
+    });
+
+    // Track Section 3 favorite color behavior
+    const colorInput = document.getElementById("s3Color");
+    colorInput.addEventListener("input", () => {
+      const val = colorInput.value;
+      const b = state.section3Behavior;
+
+      if (val.length > 0) {
+        if (!b.colorEverNonEmpty) {
+          b.colorEverNonEmpty = true;
+        }
+        if (b.colorWasCleared) {
+          b.colorEditedAfterClear = true;
+        }
+      } else {
+        // Became empty
+        if (b.colorEverNonEmpty) {
+          b.colorWasCleared = true;
+        }
+      }
+    });
+
+    // Track Section 3 checkbox behavior
+    const s3Checkboxes = document.querySelectorAll('input[name="s3"]');
+    s3Checkboxes.forEach(cb => {
+      cb.addEventListener("change", () => {
+        const anyChecked = Array.from(document.querySelectorAll('input[name="s3"]'))
+          .some(c => c.checked);
+        const b = state.section3Behavior;
+
+        if (anyChecked) {
+          if (!b.checkboxEverChecked) {
+            b.checkboxEverChecked = true;
+          }
+        } else {
+          if (b.checkboxEverChecked) {
+            b.checkboxUncheckedAfterCheck = true;
+          }
+        }
+      });
+    });
+
+    // Section 3 -> Results
+    document.getElementById("s3Next").addEventListener("click", () => {
+      stopTimer("section3");
+      scoreSection3();
+      buildResults();
+      showSection("results");
+    });
+  });
+</script>
+</body>
+</html>
