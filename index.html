@@ -660,4 +660,21 @@
     });
 
     // Section 2 -> Section 3
-    document
+    document.getElementById("s2Next").addEventListener("click", () => {
+      stopTimer("section2");
+      scoreSection2();
+      showSection("section3");
+      startTimer("section3");
+    });
+
+    // Section 3 -> Results
+    document.getElementById("s3Next").addEventListener("click", () => {
+      stopTimer("section3");
+      scoreSection3();
+      buildResults();
+      showSection("results");
+    });
+  });
+</script>
+</body>
+</html>
