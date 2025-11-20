@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Attention to Detail & Comprehension Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f4f5f7;
+      color: #222;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 24px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .btn-row {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      background: #111827;
+      color: #fff;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    button.secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    button:hover {
+      background: #0b1120;
+      transform: translateY(-1px);
+    }
+
+    button.secondary:hover {
+      background: #d1d5db;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      border-radius: 14px;
+      background: #f9fafb;
+      padding: 16px;
+      margin: 12px 0;
+      border: 1px solid #e5e7eb;
+    }
+
+    .question {
+      margin: 14px 0;
+    }
+
+    .question p {
+      margin: 0 0 6px 0;
+    }
+
+    .inline-list {
+      columns: 2;
+      column-gap: 16px;
+    }
+
+    label {
+      display: block;
+      margin: 4px 0;
+      font-size: 0.95rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 0.95rem;
+    }
+
+    .metrics {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: #374151;
+    }
+
+    .metrics span {
+      display: inline-block;
+      margin-right: 12px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+    }
+
+    .results-grid.header {
+      font-weight: 600;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .badge-good {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #ecfdf3;
+      color: #166534;
+    }
+
+    .badge-warn {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-bad {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .small {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    .highlight {
+      background: #fef3c7;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div id="intro" class="section active">
+    <h1>Attention to Detail & Comprehension Assessment</h1>
+    <p class="subtitle">
+      This assessment measures how accurately and efficiently you handle detailed instructions, data, and written information.
+      It is intentionally challenging, and a perfect score is rare.
+    </p>
+
+    <div class="card">
+      <h3>How it works</h3>
+      <ul>
+        <li>The test has multiple sections. Each section is <strong>timed automatically</strong>.</li>
+        <li>You will be scored on <strong>accuracy</strong> and <strong>speed</strong>.</li>
+        <li>At the end, you’ll see:
+          <ul>
+            <li>Accuracy by section</li>
+            <li>Your time vs. a benchmark “average” time</li>
+            <li>Key improvement opportunities</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="small">
+        Tip: Go carefully, not just quickly. Many mistakes come from skimming or making assumptions.
+      </p>
+    </div>
+
+    <div class="btn-row">
+      <button id="startBtn">Start Assessment</button>
+    </div>
+  </div>
+
+  <!-- SECTION 1: DETAIL CHECK / INSTRUCTIONS -->
+  <div id="section1" class="section">
+    <span class="pill">Section 1 · Attention to Detail (Data)</span>
+    <h2>Find the Incorrect Entries</h2>
+    <p>
+      Below is a list of employee records. Some have subtle errors (department, ID pattern, or spelling)
+      compared to the others. Select <strong>all rows that contain an error</strong>. If a row looks
+      perfectly consistent, leave it unchecked.
+    </p>
+
+    <div class="card">
+      <div class="inline-list">
+        <label>
+          <input type="checkbox" name="s1" value="row1" />
+          1. EMP-1047 · “Jonathan Smith” · Department: Finance
+        </label>
+        <label>
+          <input type="checkbox" name="s1" value="row2" />
+          2. EMP-1048 · “Jonathon Smith” · Department: Finance
+        </label>
+        <label>
+          <input type="checkbox" name="s1" value="row3" />
+          3. EMP-1051 · “Maria Gonzalez” · Department: Sales
+        </label>
+        <label>
+          <input type="checkbox" name="s1" value="row4" />
+          4. EMP-10A9 · “Maria Gonzales” · Department: Sales
+        </label>
+        <label>
+          <input type="checkbox" name="s1" value="row5" />
+          5. EMP-1052 · “Alex Chen” · Department: Operations
+        </label>
+        <label>
+          <input type="checkbox" name="s1" value="row6" />
+          6. EMP-1053 · “Alex Chen” · Department: Operation
+        </label>
+      </div>
+    </div>
+
+    <p class="small">
+      Hint: Pay attention to ID formatting, spelling, and department naming consistency.
+    </p>
+
+    <div class="btn-row">
+      <button id="s1Next">Next Section</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: READING COMPREHENSION -->
+  <div id="section2" class="section">
+    <span class="pill">Section 2 · Reading Comprehension</span>
+    <h2>Read Carefully, Then Answer from Memory</h2>
+    <p>
+      Read the paragraph below as many times as you like. When you are ready, click
+      <strong>"Hide Text & Begin Questions"</strong>. The text will disappear, and the timer will start.
+    </p>
+
+    <div class="card" id="readingBlock">
+      <p>
+        On <span class="highlight">Tuesday, April 16th</span>, the HRIS team will deploy a system update
+        to the HRConnect portal at <span class="highlight">8:30 PM Central Time</span>. The update will
+        primarily affect <span class="highlight">manager self-service pages</span>, including job change,
+        salary change, and termination workflows. During the update window, which is expected to last
+        <span class="highlight">45 minutes</span>, employees will not be able to submit new requests, but
+        they will still be able to view their existing information. Managers have been asked to avoid
+        approving any pending transactions after <span class="highlight">8:15 PM Central Time</span>.
+        Any approvals submitted after that time may not be processed until the following morning.
+      </p>
+    </div>
+
+    <div class="btn-row" id="readingActions">
+      <button id="hideReadingBtn">Hide Text & Begin Questions</button>
+    </div>
+
+    <div id="readingQuestions" style="display:none;">
+      <div class="card">
+        <div class="question">
+          <p>1. On what day and date will the HRIS team deploy the update?</p>
+          <input type="text" id="q1" placeholder="e.g., Tuesday, April 16th" />
+        </div>
+        <div class="question">
+          <p>2. What is the scheduled start time of the update (include time zone)?</p>
+          <input type="text" id="q2" placeholder="e.g., 8:30 PM Central Time" />
+        </div>
+        <div class="question">
+          <p>3. Approximately how long is the update window expected to last?</p>
+          <input type="text" id="q3" placeholder="e.g., 45 minutes" />
+        </div>
+        <div class="question">
+          <p>4. Which group of pages will be primarily affected by the update?</p>
+          <input type="text" id="q4" placeholder="e.g., manager self-service pages" />
+        </div>
+        <div class="question">
+          <p>5. After what time have managers been asked to avoid approving transactions?</p>
+          <input type="text" id="q5" placeholder="e.g., 8:15 PM Central Time" />
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button id="s2Next">Next Section</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: INSTRUCTION FOLLOWING -->
+  <div id="section3" class="section">
+    <span class="pill">Section 3 · Following Complex Instructions</span>
+    <h2>Follow All Instructions Exactly</h2>
+    <div class="card">
+      <p>
+        Read <strong>all</strong> of the instructions below before performing any action:
+      </p>
+      <ol>
+        <li>Type your first name in the box below.</li>
+        <li>Then, immediately erase it so the box is blank again.</li>
+        <li>Check exactly <span class="highlight">two</span> of the four boxes below.</li>
+        <li>One box <strong>must</strong> be “C”, and you must <strong>not</strong> check box “A”.</li>
+        <li>Do <strong>not</strong> change any of your answers from Sections 1 or 2.</li>
+        <li>Once you are sure you have followed every instruction, click “Submit & View Results”.</li>
+      </ol>
+      <p class="small">
+        Many people miss at least one detail in this section. Take your time.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="question">
+        <p>Text box:</p>
+        <input type="text" id="s3Name" placeholder="Follow the instructions above carefully" />
+      </div>
+      <div class="question">
+        <p>Checkboxes:</p>
+        <label><input type="checkbox" name="s3" value="A" /> A</label>
+        <label><input type="checkbox" name="s3" value="B" /> B</label>
+        <label><input type="checkbox" name="s3" value="C" /> C</label>
+        <label><input type="checkbox" name="s3" value="D" /> D</label>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button id="s3Next">Submit & View Results</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="section">
+    <span class="pill">Results</span>
+    <h2>Your Assessment Summary</h2>
+    <p>
+      Below is a breakdown of your performance by section. Scores are based on
+      both <strong>accuracy</strong> and <strong>time</strong>.
+    </p>
+
+    <div class="card">
+      <div class="results-grid header">
+        <div>Section</div>
+        <div>Accuracy</div>
+        <div>Time vs. Benchmark</div>
+      </div>
+      <div class="results-grid">
+        <div>Section 1 · Data Detail</div>
+        <div id="s1Accuracy"></div>
+        <div id="s1Time"></div>
+      </div>
+      <div class="results-grid">
+        <div>Section 2 · Reading Comprehension</div>
+        <div id="s2Accuracy"></div>
+        <div id="s2Time"></div>
+      </div>
+      <div class="results-grid">
+        <div>Section 3 · Instruction Following</div>
+        <div id="s3Accuracy"></div>
+        <div id="s3Time"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Interpretation & Improvement Areas</h3>
+      <p id="overallSummary"></p>
+      <ul id="improvementList"></ul>
+      <p class="small">
+        Note: Benchmarks are placeholders. For real usage with candidates/employees,
+        you can replace these with your own averages based on collected data.
+      </p>
+    </div>
+
+    <div class="btn-row">
+      <button class="secondary" onclick="location.reload()">Restart Assessment</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ----- CONFIG: BENCHMARK TIMES (SECONDS) -----
+  const BENCHMARKS = {
+    section1: 75,   // 1 min 15 sec
+    section2: 180,  // 3 minutes
+    section3: 90    // 1 min 30 sec
+  };
+
+  const state = {
+    currentSection: "intro",
+    startTimes: {},
+    durations: {},
+    scores: {}
+  };
+
+  function showSection(id) {
+    document.querySelectorAll(".section").forEach(sec => {
+      sec.classList.remove("active");
+    });
+    const target = document.getElementById(id);
+    if (target) {
+      target.classList.add("active");
+      state.currentSection = id;
+    }
+  }
+
+  function startTimer(sectionId) {
+    state.startTimes[sectionId] = performance.now();
+  }
+
+  function stopTimer(sectionId) {
+    const start = state.startTimes[sectionId];
+    if (!start) return;
+    const end = performance.now();
+    const seconds = (end - start) / 1000;
+    state.durations[sectionId] = seconds;
+  }
+
+  function formatSeconds(sec) {
+    return sec.toFixed(1) + "s";
+  }
+
+  function badgeForTime(sec, benchmark) {
+    if (!benchmark) return "";
+
+    if (sec <= benchmark * 0.8) {
+      return `<span class="badge-good">Faster than average</span>`;
+    } else if (sec <= benchmark * 1.2) {
+      return `<span class="badge-warn">Around average</span>`;
+    } else {
+      return `<span class="badge-bad">Slower than average</span>`;
+    }
+  }
+
+  function badgeForAccuracy(pct) {
+    if (pct >= 90) {
+      return `<span class="badge-good">${pct}%</span>`;
+    } else if (pct >= 70) {
+      return `<span class="badge-warn">${pct}%</span>`;
+    } else {
+      return `<span class="badge-bad">${pct}%</span>`;
+    }
+  }
+
+  // SCORING: SECTION 1
+  function scoreSection1() {
+    // Correct error rows: row2, row4, row6
+    const correctSet = new Set(["row2", "row4", "row6"]);
+    const selected = Array.from(document.querySelectorAll('input[name="s1"]:checked'))
+      .map(cb => cb.value);
+
+    let correct = 0;
+    let total = correctSet.size;
+
+    const selectedSet = new Set(selected);
+    let allMatch = true;
+
+    correctSet.forEach(v => {
+      if (!selectedSet.has(v)) {
+        allMatch = false;
+      }
+    });
+    selectedSet.forEach(v => {
+      if (!correctSet.has(v)) {
+        allMatch = false;
+      }
+    });
+
+    if (allMatch) {
+      correct = total;
+    } else {
+      correct = 0; // harsh scoring: any deviation = 0
+    }
+
+    const accuracyPct = (correct / total) * 100;
+    state.scores.section1 = { correct, total, accuracyPct };
+  }
+
+  // SCORING: SECTION 2
+  function normalizeAnswer(str) {
+    return str.trim().toLowerCase().replace(/\s+/g, " ");
+  }
+
+  function scoreSection2() {
+    const a1 = normalizeAnswer(document.getElementById("q1").value);
+    const a2 = normalizeAnswer(document.getElementById("q2").value);
+    const a3 = normalizeAnswer(document.getElementById("q3").value);
+    const a4 = normalizeAnswer(document.getElementById("q4").value);
+    const a5 = normalizeAnswer(document.getElementById("q5").value);
+
+    let correct = 0;
+    let total = 5;
+
+    // Accept a few variations
+    if (a1.includes("tuesday") && (a1.includes("april 16") || a1.includes("april 16th"))) correct++;
+    if (a2.includes("8:30") && (a2.includes("central") || a2.includes("pm"))) correct++;
+    if (a3.includes("45")) correct++;
+    if (a4.includes("manager") && a4.includes("self") && a4.includes("service")) correct++;
+    if (a5.includes("8:15") && a5.includes("central")) correct++;
+
+    const accuracyPct = (correct / total) * 100;
+    state.scores.section2 = { correct, total, accuracyPct };
+  }
+
+  // SCORING: SECTION 3
+  function scoreSection3() {
+    const nameValue = document.getElementById("s3Name").value.trim();
+    const checkboxes = Array.from(document.querySelectorAll('input[name="s3"]:checked')).map(cb => cb.value);
+
+    let total = 3;
+    let correct = 0;
+
+    // Instruction: type name then erase -> final box should be blank
+    if (nameValue === "") correct++;
+
+    // Exactly two boxes should be checked
+    if (checkboxes.length === 2) correct++;
+
+    // One must be C and A must not be checked
+    const hasC = checkboxes.includes("C");
+    const hasA = checkboxes.includes("A");
+    if (hasC && !hasA) correct++;
+
+    const accuracyPct = (correct / total) * 100;
+    state.scores.section3 = { correct, total, accuracyPct };
+  }
+
+  function buildResults() {
+    // Section 1
+    const s1 = state.scores.section1 || { accuracyPct: 0 };
+    const s1TimeSec = state.durations.section1 || 0;
+    document.getElementById("s1Accuracy").innerHTML = badgeForAccuracy(Math.round(s1.accuracyPct));
+    document.getElementById("s1Time").innerHTML =
+      `${formatSeconds(s1TimeSec)}<br/><span class="small">${badgeForTime(s1TimeSec, BENCHMARKS.section1)}</span>`;
+
+    // Section 2
+    const s2 = state.scores.section2 || { accuracyPct: 0 };
+    const s2TimeSec = state.durations.section2 || 0;
+    document.getElementById("s2Accuracy").innerHTML = badgeForAccuracy(Math.round(s2.accuracyPct));
+    document.getElementById("s2Time").innerHTML =
+      `${formatSeconds(s2TimeSec)}<br/><span class="small">${badgeForTime(s2TimeSec, BENCHMARKS.section2)}</span>`;
+
+    // Section 3
+    const s3 = state.scores.section3 || { accuracyPct: 0 };
+    const s3TimeSec = state.durations.section3 || 0;
+    document.getElementById("s3Accuracy").innerHTML = badgeForAccuracy(Math.round(s3.accuracyPct));
+    document.getElementById("s3Time").innerHTML =
+      `${formatSeconds(s3TimeSec)}<br/><span class="small">${badgeForTime(s3TimeSec, BENCHMARKS.section3)}</span>`;
+
+    // Overall narrative
+    const overallSummary = document.getElementById("overallSummary");
+    const improvementList = document.getElementById("improvementList");
+    improvementList.innerHTML = "";
+
+    const avgAccuracy = (
+      (s1.accuracyPct + s2.accuracyPct + s3.accuracyPct) / 3
+    ).toFixed(1);
+
+    overallSummary.textContent =
+      `Your overall accuracy across all sections was ${avgAccuracy}%. `
+      + `This test is intentionally difficult, so use these results to identify where additional focus on detail and comprehension will be most helpful.`;
+
+    // Targeted improvement tips
+    if (s1.accuracyPct < 90) {
+      const li = document.createElement("li");
+      li.textContent =
+        "Section 1 (Data Detail): Practice scanning for subtle inconsistencies in spelling, ID formats, and labels. Slow your eyes and compare items side-by-side.";
+      improvementList.appendChild(li);
+    }
+
+    if (s2.accuracyPct < 90) {
+      const li = document.createElement("li");
+      li.textContent =
+        "Section 2 (Reading Comprehension): Work on retaining specific facts (dates, times, conditions). Try summarizing key points in your own words before moving on.";
+      improvementList.appendChild(li);
+    }
+
+    if (s3.accuracyPct < 90) {
+      const li = document.createElement("li");
+      li.textContent =
+        "Section 3 (Instructions): Focus on reading all instructions fully before acting. Resist the urge to rush; many errors come from acting after only skimming.";
+      improvementList.appendChild(li);
+    }
+
+    if (
+      s1.accuracyPct >= 90 &&
+      s2.accuracyPct >= 90 &&
+      s3.accuracyPct >= 90
+    ) {
+      const li = document.createElement("li");
+      li.textContent =
+        "Strong performance across all sections. Continue to balance speed with accuracy—particularly when stakes are high or details are critical.";
+      improvementList.appendChild(li);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Intro -> Section1
+    document.getElementById("startBtn").addEventListener("click", () => {
+      showSection("section1");
+      startTimer("section1");
+    });
+
+    // Section 1 -> Section 2
+    document.getElementById("s1Next").addEventListener("click", () => {
+      stopTimer("section1");
+      scoreSection1();
+      showSection("section2");
+      // timer for section2 starts after reading is hidden (when questions begin)
+    });
+
+    // Hide reading & show questions (start timer)
+    document.getElementById("hideReadingBtn").addEventListener("click", () => {
+      const block = document.getElementById("readingBlock");
+      const actions = document.getElementById("readingActions");
+      const questions = document.getElementById("readingQuestions");
+      block.style.display = "none";
+      actions.style.display = "none";
+      questions.style.display = "block";
+      startTimer("section2");
+    });
+
+    // Section 2 -> Section 3
+    document
