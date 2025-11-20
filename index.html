@@ -123,17 +123,6 @@
       font-size: 0.95rem;
     }
 
-    .metrics {
-      margin-top: 16px;
-      font-size: 0.9rem;
-      color: #374151;
-    }
-
-    .metrics span {
-      display: inline-block;
-      margin-right: 12px;
-    }
-
     .results-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
@@ -288,13 +277,14 @@
     </div>
   </div>
 
-  <!-- SECTION 2: READING COMPREHENSION (LAURA) -->
+  <!-- SECTION 2: READING + DETAIL MCQs -->
   <div id="section2" class="section">
-    <span class="pill">Section 2 · Reading Comprehension</span>
+    <span class="pill">Section 2 · Reading & Detail Questions</span>
     <h2>Read Carefully, Then Answer from Memory</h2>
     <p>
-      Read the paragraph below as many times as you like. When you are ready, click
+      First, read the paragraph below as many times as you like. When you are ready, click
       <strong>"Hide Text & Begin Questions"</strong>. The text will disappear, and the timer will start.
+      After the paragraph-based question, you’ll answer additional multiple-choice questions that test attention to detail.
     </p>
 
     <div class="card" id="readingBlock">
@@ -317,17 +307,76 @@
 
     <div id="readingQuestions" style="display:none;">
       <div class="card">
+        <!-- Q1: Paragraph-based MCQ -->
         <div class="question">
-          <p>1. What type of apples does Laura need to pick up?</p>
-          <input type="text" id="q1" placeholder="e.g., green apples" />
+          <p>1. At what time did Laura arrive back home?</p>
+          <label><input type="radio" name="q1" value="home_247" /> 2:47 PM</label>
+          <label><input type="radio" name="q1" value="home_305" /> 3:05 PM</label>
+          <label><input type="radio" name="q1" value="home_225" /> 2:25 PM</label>
+          <label><input type="radio" name="q1" value="home_315" /> 3:15 PM</label>
         </div>
+
+        <!-- Q2: Number precision -->
         <div class="question">
-          <p>2. What type of nuts does Laura need to buy?</p>
-          <input type="text" id="q2" placeholder="e.g., Her mom did not say" />
+          <p>2. Which number matches <strong>exactly</strong> this value: 10,234.07?</p>
+          <label><input type="radio" name="q2" value="num_10234_70" /> 10,234.70</label>
+          <label><input type="radio" name="q2" value="num_exact" /> 10,234.07</label>
+          <label><input type="radio" name="q2" value="num_10324_07" /> 10,324.07</label>
+          <label><input type="radio" name="q2" value="num_10234_7" /> 10,234.7</label>
         </div>
+
+        <!-- Q3: Email exact match -->
         <div class="question">
-          <p>3. At what time did Laura leave the store?</p>
-          <input type="text" id="q3" placeholder="e.g., 2:47 PM" />
+          <p>3. Which email address matches <strong>exactly</strong>: alex.chen@example.com?</p>
+          <label><input type="radio" name="q3" value="email_typo1" /> alex.chen@examp1e.com</label>
+          <label><input type="radio" name="q3" value="email_exact" /> alex.chen@example.com</label>
+          <label><input type="radio" name="q3" value="email_typo2" /> alex.chan@example.com</label>
+          <label><input type="radio" name="q3" value="email_typo3" /> alex.chen@example.co</label>
+        </div>
+
+        <!-- Q4: ID pattern -->
+        <div class="question">
+          <p>4. Which ID matches the pattern <strong>EMP-2053</strong> exactly?</p>
+          <label><input type="radio" name="q4" value="id_suffix" /> EMP-2053-A</label>
+          <label><input type="radio" name="q4" value="id_exact" /> EMP-2053</label>
+          <label><input type="radio" name="q4" value="id_digitswap" /> EMP-2503</label>
+          <label><input type="radio" name="q4" value="id_dashvariant" /> EMP2053</label>
+        </div>
+
+        <!-- Q5: Date format -->
+        <div class="question">
+          <p>5. Which date is written in <strong>MM/DD/YYYY</strong> format for March 7th, 2024?</p>
+          <label><input type="radio" name="q5" value="date_dmY" /> 07/03/2024</label>
+          <label><input type="radio" name="q5" value="date_short" /> 3/7/24</label>
+          <label><input type="radio" name="q5" value="date_exact" /> 03/07/2024</label>
+          <label><input type="radio" name="q5" value="date_dash" /> 03-07-2024</label>
+        </div>
+
+        <!-- Q6: Title case -->
+        <div class="question">
+          <p>6. Which option uses correct title-style capitalization for the role: manager, hr operations?</p>
+          <label><input type="radio" name="q6" value="title_lower" /> manager, hr operations</label>
+          <label><input type="radio" name="q6" value="title_partial" /> Manager, Hr Operations</label>
+          <label><input type="radio" name="q6" value="title_exact" /> Manager, HR Operations</label>
+          <label><input type="radio" name="q6" value="title_allcaps" /> MANAGER, HR OPERATIONS</label>
+        </div>
+
+        <!-- Q7: Exact list -->
+        <div class="question">
+          <p>7. Which list matches <strong>exactly</strong>: "Apples, Nuts, and Water"?</p>
+          <label><input type="radio" name="q7" value="list_lower" /> apples, nuts and water</label>
+          <label><input type="radio" name="q7" value="list_missing_comma" /> Apples, Nuts and Water</label>
+          <label><input type="radio" name="q7" value="list_exact" /> Apples, Nuts, and Water</label>
+          <label><input type="radio" name="q7" value="list_extra" /> Apples, Nuts, Water, and Juice</label>
+        </div>
+
+        <!-- Q8: Duration math -->
+        <div class="question">
+          <p>8. A meeting runs from 9:05 AM to 10:20 AM. How many minutes long is it?</p>
+          <label><input type="radio" name="q8" value="dur_75" /> 75 minutes</label>
+          <label><input type="radio" name="q8" value="dur_85" /> 85 minutes</label>
+          <label><input type="radio" name="q8" value="dur_65" /> 65 minutes</label>
+          <label><input type="radio" name="q8" value="dur_80" /> 80 minutes</label>
         </div>
       </div>
 
@@ -399,7 +448,7 @@
         <div id="s1Time"></div>
       </div>
       <div class="results-grid">
-        <div>Section 2 · Reading Comprehension</div>
+        <div>Section 2 · Reading & Detail</div>
         <div id="s2Accuracy"></div>
         <div id="s2Time"></div>
       </div>
@@ -432,7 +481,7 @@
   // ----- CONFIG: BENCHMARK TIMES (SECONDS) -----
   const BENCHMARKS = {
     section1: 90,   // 1.5 minutes
-    section2: 120,  // 2 minutes
+    section2: 150,  // 2.5 minutes (more questions now)
     section3: 90    // 1.5 minutes
   };
 
@@ -527,37 +576,51 @@
     state.scores.section1 = { correct, total, accuracyPct };
   }
 
-  // SCORING: SECTION 2 (Laura)
-  function normalizeAnswer(str) {
-    return str.trim().toLowerCase().replace(/\s+/g, " ");
-  }
-
+  // SCORING: SECTION 2 (MCQs + paragraph)
   function scoreSection2() {
-    const a1 = normalizeAnswer(document.getElementById("q1").value);
-    const a2 = normalizeAnswer(document.getElementById("q2").value);
-    const a3 = normalizeAnswer(document.getElementById("q3").value);
+    const correctAnswers = {
+      q1: "home_305",      // 3:05 PM
+      q2: "num_exact",     // 10,234.07
+      q3: "email_exact",   // alex.chen@example.com
+      q4: "id_exact",      // EMP-2053
+      q5: "date_exact",    // 03/07/2024
+      q6: "title_exact",   // Manager, HR Operations
+      q7: "list_exact",    // Apples, Nuts, and Water
+      q8: "dur_65"         // 65 minutes
+    };
+
+    const closeAnswers = {
+      q1: ["home_247"],                        // picked time she left store
+      q2: ["num_10234_70", "num_10234_7"],    // decimal off / truncated
+      q3: ["email_typo1", "email_typo3"],     // very close typos
+      q4: ["id_digitswap", "id_dashvariant"], // digit swap / missing dash
+      q5: ["date_dmY", "date_dash"],          // right digits, wrong format
+      q6: ["title_partial"],                  // almost correct capitalization
+      q7: ["list_lower", "list_missing_comma"], // text nearly the same
+      q8: ["dur_75"]                          // close time estimate
+    };
 
     let correct = 0;
-    let total = 3;
+    let total = 8;
+    let closeWrong = 0;
 
-    // Q1: green apples
-    if (a1.includes("green") && a1.includes("apple")) correct++;
+    for (let i = 1; i <= total; i++) {
+      const name = `q${i}`;
+      const chosen = document.querySelector(`input[name="${name}"]:checked`);
+      if (!chosen) {
+        continue; // unanswered
+      }
+      const value = chosen.value;
 
-    // Q2: her mom did not say
-    if (
-      a2.includes("did not say") ||
-      a2.includes("didn't say") ||
-      a2.includes("not specified") ||
-      a2.includes("unspecified")
-    ) {
-      correct++;
+      if (value === correctAnswers[name]) {
+        correct++;
+      } else if (closeAnswers[name] && closeAnswers[name].includes(value)) {
+        closeWrong++;
+      }
     }
 
-    // Q3: 2:47 PM
-    if (a3.includes("2:47") || a3.includes("2 47")) correct++;
-
     const accuracyPct = (correct / total) * 100;
-    state.scores.section2 = { correct, total, accuracyPct };
+    state.scores.section2 = { correct, total, accuracyPct, closeWrong };
   }
 
   // SCORING: SECTION 3
@@ -568,9 +631,6 @@
     let total = 3;
     let correct = 0;
 
-    // Instruction around favorite color:
-    // They should have typed something (everNonEmpty), cleared it (wasCleared),
-    // not edited after clearing, and final field must be blank.
     const behavior = state.section3Behavior;
     const colorCondition =
       behavior.colorEverNonEmpty &&
@@ -580,10 +640,8 @@
 
     if (colorCondition) correct++;
 
-    // Exactly two boxes should be checked
     if (checkboxes.length === 2) correct++;
 
-    // One must be C and A must not be checked
     const hasC = checkboxes.includes("C");
     const hasA = checkboxes.includes("A");
     if (hasC && !hasA) correct++;
@@ -593,28 +651,24 @@
   }
 
   function buildResults() {
-    // Section 1
     const s1 = state.scores.section1 || { accuracyPct: 0 };
     const s1TimeSec = state.durations.section1 || 0;
     document.getElementById("s1Accuracy").innerHTML = badgeForAccuracy(Math.round(s1.accuracyPct));
     document.getElementById("s1Time").innerHTML =
       `${formatSeconds(s1TimeSec)}<br/><span class="small">${badgeForTime(s1TimeSec, BENCHMARKS.section1)}</span>`;
 
-    // Section 2
-    const s2 = state.scores.section2 || { accuracyPct: 0 };
+    const s2 = state.scores.section2 || { accuracyPct: 0, closeWrong: 0 };
     const s2TimeSec = state.durations.section2 || 0;
     document.getElementById("s2Accuracy").innerHTML = badgeForAccuracy(Math.round(s2.accuracyPct));
     document.getElementById("s2Time").innerHTML =
       `${formatSeconds(s2TimeSec)}<br/><span class="small">${badgeForTime(s2TimeSec, BENCHMARKS.section2)}</span>`;
 
-    // Section 3
     const s3 = state.scores.section3 || { accuracyPct: 0 };
     const s3TimeSec = state.durations.section3 || 0;
     document.getElementById("s3Accuracy").innerHTML = badgeForAccuracy(Math.round(s3.accuracyPct));
     document.getElementById("s3Time").innerHTML =
       `${formatSeconds(s3TimeSec)}<br/><span class="small">${badgeForTime(s3TimeSec, BENCHMARKS.section3)}</span>`;
 
-    // Overall narrative
     const overallSummary = document.getElementById("overallSummary");
     const improvementList = document.getElementById("improvementList");
     const behaviorList = document.getElementById("behaviorList");
@@ -627,7 +681,7 @@
 
     overallSummary.textContent =
       `Your overall accuracy across all sections was ${avgAccuracy}%. `
-      + `This test is intentionally difficult, so use these results to identify where additional focus on detail and comprehension will be most helpful.`;
+      + `This assessment is intentionally difficult. Use these results to identify where additional focus on detail and comprehension will be most helpful.`;
 
     // Targeted improvement tips
     if (s1.accuracyPct < 90) {
@@ -640,7 +694,14 @@
     if (s2.accuracyPct < 90) {
       const li = document.createElement("li");
       li.textContent =
-        "Section 2 (Reading Comprehension): Work on retaining specific facts (item types and exact times). Try mentally summarizing the scenario before moving on.";
+        "Section 2 (Reading & Detail): Work on locking in exact details (times, numbers, spelling, capitalization). Double-check before committing to an answer, especially when options look very similar.";
+      improvementList.appendChild(li);
+    }
+
+    if (s2.closeWrong && s2.closeWrong > 0) {
+      const li = document.createElement("li");
+      li.textContent =
+        `Section 2: You had ${s2.closeWrong} answer(s) that were very close but still incorrect. This often indicates you are noticing patterns but not verifying the final detail (digit, letter, or punctuation) carefully enough.`;
       improvementList.appendChild(li);
     }
 
@@ -744,7 +805,6 @@
           b.colorEditedAfterClear = true;
         }
       } else {
-        // Became empty
         if (b.colorEverNonEmpty) {
           b.colorWasCleared = true;
         }
