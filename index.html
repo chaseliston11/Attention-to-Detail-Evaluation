@@ -515,37 +515,28 @@
     }
   }
 
- // SCORING: SECTION 1 (per-row, partial credit)
-function scoreSection1() {
-  // Rows that exactly match the baseline: row1, row4
-  const expected = {
-    row1: true,   // should be checked
-    row2: false,  // should NOT be checked
-    row3: false,  // should NOT be checked
-    row4: true,   // should be checked
-    row5: false   // should NOT be checked
-  };
+  // SCORING: SECTION 1 (per-row, partial credit)
+  function scoreSection1() {
+    // Rows that exactly match the baseline: row1, row4
+    const expected = {
+      row1: true,   // should be checked
+      row2: false,  // should NOT be checked
+      row3: false,  // should NOT be checked
+      row4: true,   // should be checked
+      row5: false   // should NOT be checked
+    };
 
-  let correct = 0;
-  const rowIds = Object.keys(expected);
-  const total = rowIds.length; // 5 rows total
+    let correct = 0;
+    const rowIds = Object.keys(expected);
+    const total = rowIds.length; // 5 rows total
 
-  rowIds.forEach(id => {
-    const cb = document.querySelector(`input[name="s1"][value="${id}"]`);
-    const isChecked = cb ? cb.checked : false;
-    if (isChecked === expected[id]) {
-      correct++;
-    }
-  });
-
-  const accuracyPct = (correct / total) * 100;
-  state.scores.section1 = { correct, total, accuracyPct };
-}
-
+    rowIds.forEach(id => {
+      const cb = document.querySelector(`input[name="s1"][value="${id}"]`);
+      const isChecked = cb ? cb.checked : false;
+      if (isChecked === expected[id]) {
+        correct++;
+      }
     });
-
-    const total = correctSet.size;
-    const correct = allMatch ? total : 0; // harsh: either you got all matches correct or not
 
     const accuracyPct = (correct / total) * 100;
     state.scores.section1 = { correct, total, accuracyPct };
@@ -812,4 +803,3 @@ function scoreSection1() {
 </script>
 </body>
 </html>
-
