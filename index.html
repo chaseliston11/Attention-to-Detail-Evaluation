@@ -186,7 +186,7 @@
 <div class="container">
   <!-- INTRO -->
   <div id="intro" class="section active">
-    <h1>Attention to Detail & Comprehension Assessment</h1>
+    <h1>Attention to Detail &amp; Comprehension Assessment</h1>
     <p class="subtitle">
       This assessment measures how accurately and efficiently you handle detailed instructions, data, and written information.
       It is intentionally challenging, and a perfect score is rare.
@@ -277,106 +277,127 @@
     </div>
   </div>
 
-  <!-- SECTION 2: READING + DETAIL MCQs -->
+  <!-- SECTION 2: READING + DETAIL (POLICY EMAIL) -->
   <div id="section2" class="section">
-    <span class="pill">Section 2 · Reading & Detail Questions</span>
+    <span class="pill">Section 2 · Reading &amp; Detail (Policy Email)</span>
     <h2>Read Carefully, Then Answer from Memory</h2>
     <p>
-      First, read the paragraph below as many times as you like. When you are ready, click
-      <strong>"Hide Text & Begin Questions"</strong>. The text will disappear, and the timer will start.
-      After the paragraph-based question, you’ll answer additional multiple-choice questions that test attention to detail.
+      First, read the email below as many times as you like. When you are ready, click
+      <strong>"Hide Text &amp; Begin Questions"</strong>. The text will disappear, and the timer will start.
+      Most wrong answers are <strong>almost</strong> correct on purpose.
     </p>
 
     <div class="card" id="readingBlock">
       <p>
-        On Saturday afternoon, Laura’s mom asked her to go to the store to pick up
-        <span class="highlight">apples</span>, <span class="highlight">nuts</span>, and
-        <span class="highlight">water</span>. Her mom was specific that she needed
-        <span class="highlight">green apples</span> and exactly <span class="highlight">one gallon of water</span>,
-        but she did not mention any particular type of nuts. Laura left the house at
-        <span class="highlight">2:10 PM</span>, arrived at the store at
-        <span class="highlight">2:25 PM</span>, finished shopping and left the store at
-        <span class="highlight">2:47 PM</span>, and arrived back home at
-        <span class="highlight">3:05 PM</span>.
+        On <span class="highlight">Monday, March 4th</span>, HR sent an email titled
+        <span class="highlight">"Update: Remote Work &amp; Time Tracking"</span> to all
+        <span class="highlight">full-time employees</span> in the
+        <span class="highlight">Operations</span> and <span class="highlight">Sales</span> departments.
+        The updated policy goes into effect on <span class="highlight">Monday, April 1st</span>.
+      </p>
+      <p>
+        Starting on that date, employees must:
+        (1) clock in no later than <span class="highlight">9:05 AM local time</span>;
+        (2) submit their weekly timesheet by <span class="highlight">3:00 PM every Friday</span>;
+        and (3) work on-site at least <span class="highlight">two days per week</span>,
+        which must fall between <span class="highlight">Tuesday and Thursday</span>.
+        <span class="highlight">Contractors and interns are excluded</span> from this update
+        and should continue following their existing process.
+      </p>
+      <p>
+        Questions should be sent to
+        <span class="highlight">hr-operations@company.com</span> rather than to individual managers.
       </p>
     </div>
 
     <div class="btn-row" id="readingActions">
-      <button id="hideReadingBtn">Hide Text & Begin Questions</button>
+      <button id="hideReadingBtn">Hide Text &amp; Begin Questions</button>
     </div>
 
     <div id="readingQuestions" style="display:none;">
       <div class="card">
-        <!-- Q1: Paragraph-based MCQ -->
+        <!-- Q1: Effective date -->
         <div class="question">
-          <p>1. At what time did Laura arrive back home?</p>
-          <label><input type="radio" name="q1" value="home_247" /> 2:47 PM</label>
-          <label><input type="radio" name="q1" value="home_305" /> 3:05 PM</label>
-          <label><input type="radio" name="q1" value="home_225" /> 2:25 PM</label>
-          <label><input type="radio" name="q1" value="home_315" /> 3:15 PM</label>
+          <p>1. On what date does the updated policy go into effect?</p>
+          <label><input type="radio" name="q1" value="date_march4" /> Monday, March 4th</label>
+          <label><input type="radio" name="q1" value="date_april1" /> Monday, April 1st</label>
+          <label><input type="radio" name="q1" value="date_april4" /> Thursday, April 4th</label>
+          <label><input type="radio" name="q1" value="date_april1_noday" /> April 1st</label>
         </div>
 
-        <!-- Q2: Number precision -->
+        <!-- Q2: Who is excluded -->
         <div class="question">
-          <p>2. Which number matches <strong>exactly</strong> this value: 10,234.07?</p>
-          <label><input type="radio" name="q2" value="num_10234_70" /> 10,234.70</label>
-          <label><input type="radio" name="q2" value="num_exact" /> 10,234.07</label>
-          <label><input type="radio" name="q2" value="num_10324_07" /> 10,324.07</label>
-          <label><input type="radio" name="q2" value="num_10234_7" /> 10,234.7</label>
+          <p>2. Who is explicitly excluded from this policy update?</p>
+          <label><input type="radio" name="q2" value="ex_contractors" /> Contractors only</label>
+          <label><input type="radio" name="q2" value="ex_interns" /> Interns only</label>
+          <label><input type="radio" name="q2" value="ex_contractors_interns" /> Contractors and interns</label>
+          <label><input type="radio" name="q2" value="ex_parttime" /> All part-time employees</label>
         </div>
 
-        <!-- Q3: Email exact match -->
+        <!-- Q3: Subject line exact match -->
         <div class="question">
-          <p>3. Which email address matches <strong>exactly</strong>: alex.chen@example.com?</p>
-          <label><input type="radio" name="q3" value="email_typo1" /> alex.chen@examp1e.com</label>
-          <label><input type="radio" name="q3" value="email_exact" /> alex.chen@example.com</label>
-          <label><input type="radio" name="q3" value="email_typo2" /> alex.chan@example.com</label>
-          <label><input type="radio" name="q3" value="email_typo3" /> alex.chen@example.co</label>
+          <p>3. Which subject line matches the email title <strong>exactly</strong>?</p>
+          <label><input type="radio" name="q3" value="sub_and" /> Update: Remote Work and Time Tracking</label>
+          <label><input type="radio" name="q3" value="sub_extra" /> Update: Remote Work &amp; Time Tracking Policy</label>
+          <label><input type="radio" name="q3" value="sub_exact" /> Update: Remote Work &amp; Time Tracking</label>
+          <label><input type="radio" name="q3" value="sub_caps" /> UPDATE: Remote Work &amp; Time Tracking</label>
         </div>
 
-        <!-- Q4: ID pattern -->
+        <!-- Q4: Timesheet deadline -->
         <div class="question">
-          <p>4. Which ID matches the pattern <strong>EMP-2053</strong> exactly?</p>
-          <label><input type="radio" name="q4" value="id_suffix" /> EMP-2053-A</label>
-          <label><input type="radio" name="q4" value="id_exact" /> EMP-2053</label>
-          <label><input type="radio" name="q4" value="id_digitswap" /> EMP-2503</label>
-          <label><input type="radio" name="q4" value="id_dashvariant" /> EMP2053</label>
+          <p>4. By when must employees submit their weekly timesheet?</p>
+          <label><input type="radio" name="q4" value="ts_thu3" /> By 3:00 PM every Thursday</label>
+          <label><input type="radio" name="q4" value="ts_fri3" /> By 3:00 PM every Friday</label>
+          <label><input type="radio" name="q4" value="ts_fri5" /> By 5:00 PM every Friday</label>
+          <label><input type="radio" name="q4" value="ts_mon9" /> By 9:00 AM every Monday</label>
         </div>
 
-        <!-- Q5: Date format -->
+        <!-- Q5: On-site day rules -->
         <div class="question">
-          <p>5. Which date is written in <strong>MM/DD/YYYY</strong> format for March 7th, 2024?</p>
-          <label><input type="radio" name="q5" value="date_dmY" /> 07/03/2024</label>
-          <label><input type="radio" name="q5" value="date_short" /> 3/7/24</label>
-          <label><input type="radio" name="q5" value="date_exact" /> 03/07/2024</label>
-          <label><input type="radio" name="q5" value="date_dash" /> 03-07-2024</label>
+          <p>5. Which statement correctly reflects the on-site requirement?</p>
+          <label><input type="radio" name="q5" value="onsite_any2" /> Employees may choose any two days, Monday through Friday.</label>
+          <label><input type="radio" name="q5" value="onsite_tu_th" /> Employees must work on-site at least two days per week between Tuesday and Thursday.</label>
+          <label><input type="radio" name="q5" value="onsite_tu_th_only2" /> Employees must work on-site exactly two days per week, on Tuesday and Thursday only.</label>
+          <label><input type="radio" name="q5" value="onsite_mon_fri" /> Employees must be on-site all five days, Monday through Friday.</label>
         </div>
 
-        <!-- Q6: Title case -->
+        <!-- Q6: Correct email address -->
         <div class="question">
-          <p>6. Which option uses correct title-style capitalization for the role: manager, hr operations?</p>
-          <label><input type="radio" name="q6" value="title_lower" /> manager, hr operations</label>
-          <label><input type="radio" name="q6" value="title_partial" /> Manager, Hr Operations</label>
-          <label><input type="radio" name="q6" value="title_exact" /> Manager, HR Operations</label>
-          <label><input type="radio" name="q6" value="title_allcaps" /> MANAGER, HR OPERATIONS</label>
+          <p>6. Which email address should employees use for questions, according to the email?</p>
+          <label><input type="radio" name="q6" value="email_hr_ops_dot" /> hr.operations@company.com</label>
+          <label><input type="radio" name="q6" value="email_hr_ops_dash" /> hr-operations@company.com</label>
+          <label><input type="radio" name="q6" value="email_hr_ops_co" /> hr-operations@company.co</label>
+          <label><input type="radio" name="q6" value="email_hr_team" /> hr-team@company.com</label>
         </div>
 
-        <!-- Q7: Exact list -->
+        <!-- Q7: Scenario check -->
         <div class="question">
-          <p>7. Which list matches <strong>exactly</strong>: "Apples, Nuts, and Water"?</p>
-          <label><input type="radio" name="q7" value="list_lower" /> apples, nuts and water</label>
-          <label><input type="radio" name="q7" value="list_missing_comma" /> Apples, Nuts and Water</label>
-          <label><input type="radio" name="q7" value="list_exact" /> Apples, Nuts, and Water</label>
-          <label><input type="radio" name="q7" value="list_extra" /> Apples, Nuts, Water, and Juice</label>
+          <p>7. Which employee is fully compliant with the new policy?</p>
+          <label>
+            <input type="radio" name="q7" value="scen_a" />
+            A: Clocks in at 9:10 AM twice a week, works on-site Monday and Tuesday, submits timesheet Friday at 2:45 PM.
+          </label>
+          <label>
+            <input type="radio" name="q7" value="scen_b" />
+            B: Clocks in at 9:03 AM, works on-site Tuesday and Wednesday, submits timesheet Friday at 3:10 PM.
+          </label>
+          <label>
+            <input type="radio" name="q7" value="scen_c" />
+            C: Clocks in at 9:04 AM, works on-site Tuesday and Thursday, submits timesheet Friday at 2:55 PM.
+          </label>
+          <label>
+            <input type="radio" name="q7" value="scen_d" />
+            D: Clocks in at 8:55 AM, works fully remote, submits timesheet every other Friday at 3:00 PM.
+          </label>
         </div>
 
-        <!-- Q8: Duration math -->
+        <!-- Q8: Exact filename -->
         <div class="question">
-          <p>8. A meeting runs from 9:05 AM to 10:20 AM. How many minutes long is it?</p>
-          <label><input type="radio" name="q8" value="dur_75" /> 75 minutes</label>
-          <label><input type="radio" name="q8" value="dur_85" /> 85 minutes</label>
-          <label><input type="radio" name="q8" value="dur_65" /> 65 minutes</label>
-          <label><input type="radio" name="q8" value="dur_80" /> 80 minutes</label>
+          <p>8. The updated policy document is saved as <strong>HR_Remote-Policy_2024_v2.pdf</strong>. Which filename matches this <strong>exactly</strong>?</p>
+          <label><input type="radio" name="q8" value="file_v2_caps" /> HR_REMOTE-Policy_2024_v2.pdf</label>
+          <label><input type="radio" name="q8" value="file_v2_exact" /> HR_Remote-Policy_2024_v2.pdf</label>
+          <label><input type="radio" name="q8" value="file_v1" /> HR_Remote-Policy_2024_v1.pdf</label>
+          <label><input type="radio" name="q8" value="file_dash_year" /> HR-Remote-Policy-2024-v2.pdf</label>
         </div>
       </div>
 
@@ -448,7 +469,7 @@
         <div id="s1Time"></div>
       </div>
       <div class="results-grid">
-        <div>Section 2 · Reading & Detail</div>
+        <div>Section 2 · Reading &amp; Detail</div>
         <div id="s2Accuracy"></div>
         <div id="s2Time"></div>
       </div>
@@ -460,7 +481,7 @@
     </div>
 
     <div class="card">
-      <h3>Interpretation & Improvement Areas</h3>
+      <h3>Interpretation &amp; Improvement Areas</h3>
       <p id="overallSummary"></p>
       <ul id="improvementList"></ul>
       <h4>Section 3 Behavioral Details</h4>
@@ -481,7 +502,7 @@
   // ----- CONFIG: BENCHMARK TIMES (SECONDS) -----
   const BENCHMARKS = {
     section1: 90,   // 1.5 minutes
-    section2: 150,  // 2.5 minutes (more questions now)
+    section2: 150,  // 2.5 minutes
     section3: 90    // 1.5 minutes
   };
 
@@ -527,7 +548,7 @@
   }
 
   function badgeForTime(sec, benchmark) {
-    if (!benchmark) return "";
+    if (!benchmark || !sec) return '<span class="small">No timing data</span>';
 
     if (sec <= benchmark * 0.8) {
       return `<span class="badge-good">Faster than average</span>`;
@@ -548,7 +569,7 @@
     }
   }
 
-  // SCORING: SECTION 1
+  // SCORING: SECTION 1 (harsh exact-match: all-or-nothing)
   function scoreSection1() {
     // Correct error rows: row2, row4, row6
     const correctSet = new Set(["row2", "row4", "row6"]);
@@ -576,40 +597,39 @@
     state.scores.section1 = { correct, total, accuracyPct };
   }
 
-  // SCORING: SECTION 2 (MCQs + paragraph)
+  // SCORING: SECTION 2 (Policy email + detail MCQs; close answers flagged)
   function scoreSection2() {
     const correctAnswers = {
-      q1: "home_305",      // 3:05 PM
-      q2: "num_exact",     // 10,234.07
-      q3: "email_exact",   // alex.chen@example.com
-      q4: "id_exact",      // EMP-2053
-      q5: "date_exact",    // 03/07/2024
-      q6: "title_exact",   // Manager, HR Operations
-      q7: "list_exact",    // Apples, Nuts, and Water
-      q8: "dur_65"         // 65 minutes
+      q1: "date_april1",               // Monday, April 1st
+      q2: "ex_contractors_interns",    // Contractors and interns
+      q3: "sub_exact",                 // Update: Remote Work & Time Tracking
+      q4: "ts_fri3",                   // By 3:00 PM every Friday
+      q5: "onsite_tu_th",              // At least two days, between Tue–Thu
+      q6: "email_hr_ops_dash",         // hr-operations@company.com
+      q7: "scen_c",                    // Fully compliant scenario
+      q8: "file_v2_exact"              // Exact filename
     };
 
+    // "Close but wrong" answers – shows near-miss diligence issues
     const closeAnswers = {
-      q1: ["home_247"],                        // picked time she left store
-      q2: ["num_10234_70", "num_10234_7"],    // decimal off / truncated
-      q3: ["email_typo1", "email_typo3"],     // very close typos
-      q4: ["id_digitswap", "id_dashvariant"], // digit swap / missing dash
-      q5: ["date_dmY", "date_dash"],          // right digits, wrong format
-      q6: ["title_partial"],                  // almost correct capitalization
-      q7: ["list_lower", "list_missing_comma"], // text nearly the same
-      q8: ["dur_75"]                          // close time estimate
+      q1: ["date_april1_noday"],                 // Right date, missing weekday
+      q2: ["ex_contractors", "ex_interns"],      // Only half of exclusion
+      q3: ["sub_and", "sub_extra"],              // Text almost the same
+      q4: ["ts_fri5"],                            // Right day, wrong time
+      q5: ["onsite_tu_th_only2", "onsite_any2"], // Misreading "at least" / day range
+      q6: ["email_hr_ops_dot", "email_hr_ops_co"],
+      q7: ["scen_b"],                            // Almost compliant (late timesheet)
+      q8: ["file_v1", "file_dash_year"]          // Very similar filename
     };
 
     let correct = 0;
-    let total = 8;
+    const total = 8;
     let closeWrong = 0;
 
     for (let i = 1; i <= total; i++) {
       const name = `q${i}`;
       const chosen = document.querySelector(`input[name="${name}"]:checked`);
-      if (!chosen) {
-        continue; // unanswered
-      }
+      if (!chosen) continue; // unanswered
       const value = chosen.value;
 
       if (value === correctAnswers[name]) {
@@ -628,6 +648,7 @@
     const colorValue = document.getElementById("s3Color").value.trim();
     const checkboxes = Array.from(document.querySelectorAll('input[name="s3"]:checked')).map(cb => cb.value);
 
+    // We treat Section 3 as 3 distinct instruction checks
     let total = 3;
     let correct = 0;
 
@@ -655,19 +676,19 @@
     const s1TimeSec = state.durations.section1 || 0;
     document.getElementById("s1Accuracy").innerHTML = badgeForAccuracy(Math.round(s1.accuracyPct));
     document.getElementById("s1Time").innerHTML =
-      `${formatSeconds(s1TimeSec)}<br/><span class="small">${badgeForTime(s1TimeSec, BENCHMARKS.section1)}</span>`;
+      `${formatSeconds(s1TimeSec || 0)}<br/><span class="small">${badgeForTime(s1TimeSec, BENCHMARKS.section1)}</span>`;
 
     const s2 = state.scores.section2 || { accuracyPct: 0, closeWrong: 0 };
     const s2TimeSec = state.durations.section2 || 0;
     document.getElementById("s2Accuracy").innerHTML = badgeForAccuracy(Math.round(s2.accuracyPct));
     document.getElementById("s2Time").innerHTML =
-      `${formatSeconds(s2TimeSec)}<br/><span class="small">${badgeForTime(s2TimeSec, BENCHMARKS.section2)}</span>`;
+      `${formatSeconds(s2TimeSec || 0)}<br/><span class="small">${badgeForTime(s2TimeSec, BENCHMARKS.section2)}</span>`;
 
     const s3 = state.scores.section3 || { accuracyPct: 0 };
     const s3TimeSec = state.durations.section3 || 0;
     document.getElementById("s3Accuracy").innerHTML = badgeForAccuracy(Math.round(s3.accuracyPct));
     document.getElementById("s3Time").innerHTML =
-      `${formatSeconds(s3TimeSec)}<br/><span class="small">${badgeForTime(s3TimeSec, BENCHMARKS.section3)}</span>`;
+      `${formatSeconds(s3TimeSec || 0)}<br/><span class="small">${badgeForTime(s3TimeSec, BENCHMARKS.section3)}</span>`;
 
     const overallSummary = document.getElementById("overallSummary");
     const improvementList = document.getElementById("improvementList");
@@ -681,7 +702,7 @@
 
     overallSummary.textContent =
       `Your overall accuracy across all sections was ${avgAccuracy}%. `
-      + `This assessment is intentionally difficult. Use these results to identify where additional focus on detail and comprehension will be most helpful.`;
+      + `This assessment is designed to highlight diligence: carefully reading, cross-checking details, and following instructions exactly.`;
 
     // Targeted improvement tips
     if (s1.accuracyPct < 90) {
@@ -694,21 +715,21 @@
     if (s2.accuracyPct < 90) {
       const li = document.createElement("li");
       li.textContent =
-        "Section 2 (Reading & Detail): Work on locking in exact details (times, numbers, spelling, capitalization). Double-check before committing to an answer, especially when options look very similar.";
+        "Section 2 (Reading & Detail): Focus on capturing exact requirements in written communication (dates, times, exclusions, email addresses, filenames). Many errors come from assuming instead of verifying.";
       improvementList.appendChild(li);
     }
 
     if (s2.closeWrong && s2.closeWrong > 0) {
       const li = document.createElement("li");
       li.textContent =
-        `Section 2: You had ${s2.closeWrong} answer(s) that were very close but still incorrect. This often indicates you are noticing patterns but not verifying the final detail (digit, letter, or punctuation) carefully enough.`;
+        `Section 2: You had ${s2.closeWrong} answer(s) that were very close but still incorrect. This often indicates you noticed the general pattern but missed one key word, number, or condition.`;
       improvementList.appendChild(li);
     }
 
     if (s3.accuracyPct < 90) {
       const li = document.createElement("li");
       li.textContent =
-        "Section 3 (Instructions): Focus on reading all instructions fully before acting. Many errors come from acting too quickly after only skimming.";
+        "Section 3 (Instructions): Before acting, read all instructions fully and then mentally check your actions against each step. This skill is critical for complex processes and change requests.";
       improvementList.appendChild(li);
     }
 
@@ -719,7 +740,7 @@
     ) {
       const li = document.createElement("li");
       li.textContent =
-        "Strong performance across all sections. Continue to balance speed with accuracy—particularly when stakes are high or details are critical.";
+        "Strong performance across all sections. You demonstrate high diligence: careful reading, accurate detail handling, and precise instruction-following.";
       improvementList.appendChild(li);
     }
 
@@ -728,7 +749,7 @@
 
     const li1 = document.createElement("li");
     li1.textContent = b.colorEverNonEmpty
-      ? "Favorite color box: You entered a value at least once."
+      ? "Favorite color box: You entered a value at least once (as instructed)."
       : "Favorite color box: You never entered a value, which does not follow the instruction to type your favorite color before erasing it.";
     behaviorList.appendChild(li1);
 
@@ -740,7 +761,7 @@
 
     const li3 = document.createElement("li");
     li3.textContent = b.colorEditedAfterClear
-      ? "Favorite color box: You typed again after erasing, which goes against the instruction not to add details after clearing the field."
+      ? "Favorite color box: You typed again after erasing, which goes against the instruction not to add anything after clearing the field."
       : "Favorite color box: You did not type again after clearing the field.";
     behaviorList.appendChild(li3);
 
