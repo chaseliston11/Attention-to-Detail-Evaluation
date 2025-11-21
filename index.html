@@ -215,19 +215,28 @@
     </div>
   </div>
 
-  <!-- SECTION 1: DATA DETAIL -->
+  <!-- SECTION 1: DATA DETAIL (BASELINE + MATCH/NO MATCH) -->
   <div id="section1" class="section">
-    <span class="pill">Section 1 · Attention to Detail (Employee Data)</span>
-    <h2>Identify Records with Incorrect Details</h2>
+    <span class="pill">Section 1 · Attention to Detail (Employee Record Match)</span>
+    <h2>Compare Each Record to the Baseline</h2>
     <p>
-      Below is a list of employee records. Each line contains multiple pieces of information:
-      name, ID, department, phone, state, email, manager, job title, location, status, hire date,
-      and standard shift.
+      Below is a <strong>baseline employee record</strong>. Read it carefully. Then review the records beneath it.
+      Some records match the baseline <strong>exactly</strong>, and others have one or more small differences
+      (such as spacing, punctuation, digits, or spelling).
     </p>
     <p>
-      Some records contain <strong>any type of error</strong> (spelling, formatting, mismatched data, inconsistent state, etc.).
-      Select <strong>all rows that contain at least one error</strong>. If a row looks perfectly consistent, leave it unchecked.
+      Your task: <strong>Select every row that matches the baseline record exactly.</strong>
+      If a row has <em>any</em> difference at all, leave it unchecked.
     </p>
+
+    <div class="card mono">
+      <p><strong>Baseline Record:</strong></p>
+      <p>
+        EMP-2047 · Name: Jonathan Smith · Dept: Finance · Phone: (555) 201-4488 · State: MN ·
+        Email: jonathan.smith@example.com · Manager: Kelly Brown · Title: Financial Analyst ·
+        Location: Minneapolis, MN · Status: Active · Hire Date: 06/14/2021 · Shift: Mon–Fri, 8:00–5:00
+      </p>
+    </div>
 
     <div class="card mono">
       <label>
@@ -238,38 +247,32 @@
       </label>
       <label>
         <input type="checkbox" name="s1" value="row2" />
-        2. EMP-2048 · Name: Jonathon Smith · Dept: Finance · Phone: (555) 201-4488 · State: MN ·
+        2. EMP-2047 · Name: Jonathon Smith · Dept: Finance · Phone: (555) 201-4488 · State: MN ·
            Email: jonathan.smith@example.com · Manager: Kelly Brown · Title: Financial Analyst ·
            Location: Minneapolis, MN · Status: Active · Hire Date: 06/14/2021 · Shift: Mon–Fri, 8:00–5:00
       </label>
       <label>
         <input type="checkbox" name="s1" value="row3" />
-        3. EMP-2051 · Name: Maria Gonzalez · Dept: Sales · Phone: (555) 309-7721 · State: CO ·
-           Email: maria.gonzalez@example.com · Manager: David Lee · Title: Account Executive ·
-           Location: Denver, CO · Status: Active · Hire Date: 03/02/2020 · Shift: Mon–Fri, 9:00–6:00
+        3. EMP-2047 · Name: Jonathan Smith · Dept: Finance · Phone: (555) 201-4488 · State: MN ·
+           Email: jonathan.smith@example.com · Manager: Kelley Brown · Title: Financial Analyst ·
+           Location: Minneapolis, MN · Status: Active · Hire Date: 06/14/2021 · Shift: Mon–Fri, 8:00–5:00
       </label>
       <label>
         <input type="checkbox" name="s1" value="row4" />
-        4. EMP-20S1 · Name: Maria Gonzales · Dept: Sales · Phone: 555-309-7721 · State: CA ·
-           Email: maria.gonzalez@example.com · Manager: David Lee · Title: Account Executive ·
-           Location: Denver, CO · Status: Active · Hire Date: 03/02/2020 · Shift: Mon–Fri, 9:00–6:00
+        4. EMP-2047 · Name: Jonathan Smith · Dept: Finance · Phone: (555) 201-4488 · State: MN ·
+           Email: jonathan.smith@example.com · Manager: Kelly Brown · Title: Financial Analyst ·
+           Location: Minneapolis, MN · Status: Active · Hire Date: 06/14/2021 · Shift: Mon–Fri, 8:00–5:00
       </label>
       <label>
         <input type="checkbox" name="s1" value="row5" />
-        5. EMP-2052 · Name: Alex Chen · Dept: Operations · Phone: (555) 441-9830 · State: TX ·
-           Email: alex.chen@example.com · Manager: Priya Patel · Title: Operations Manager ·
-           Location: Austin, TX · Status: Active · Hire Date: 11/19/2019 · Shift: Mon–Fri, 7:30–4:30
-      </label>
-      <label>
-        <input type="checkbox" name="s1" value="row6" />
-        6. EMP-2053 · Name: Alex Chen · Dept: Operation · Phone: (555) 441-983O · State: TX ·
-           Email: alex.chen@example.com · Manager: Priya Patel · Title: Operations Manager ·
-           Location: Austin, TX · Status: Active · Hire Date: 11/19/2019 · Shift: Mon–Fri, 7:30–4:30
+        5. EMP-2047 · Name: Jonathan Smith · Dept: Finance · Phone: (555) 201-4488 · State: MN ·
+           Email: jonathan.smith@example.co · Manager: Kelly Brown · Title: Financial Analyst ·
+           Location: Minneapolis, MN · Status: Active · Hire Date: 06/14/2021 · Shift: Mon–Fri, 8:00–5:00
       </label>
     </div>
 
     <p class="small">
-      Hint: Look carefully at spelling, ID patterns, phone number formatting, state vs. location, and numeric characters.
+      Hint: Assume that even a single character difference (letter, digit, punctuation, or spacing) makes the record a mismatch.
     </p>
 
     <div class="btn-row">
@@ -277,7 +280,7 @@
     </div>
   </div>
 
-  <!-- SECTION 2: READING + DETAIL (POLICY EMAIL) -->
+  <!-- SECTION 2: READING + DETAIL (POLICY EMAIL, 3 QUESTIONS) -->
   <div id="section2" class="section">
     <span class="pill">Section 2 · Reading &amp; Detail (Policy Email)</span>
     <h2>Read Carefully, Then Answer from Memory</h2>
@@ -334,70 +337,13 @@
           <label><input type="radio" name="q2" value="ex_parttime" /> All part-time employees</label>
         </div>
 
-        <!-- Q3: Subject line exact match -->
+        <!-- Q3: Correct email address -->
         <div class="question">
-          <p>3. Which subject line matches the email title <strong>exactly</strong>?</p>
-          <label><input type="radio" name="q3" value="sub_and" /> Update: Remote Work and Time Tracking</label>
-          <label><input type="radio" name="q3" value="sub_extra" /> Update: Remote Work &amp; Time Tracking Policy</label>
-          <label><input type="radio" name="q3" value="sub_exact" /> Update: Remote Work &amp; Time Tracking</label>
-          <label><input type="radio" name="q3" value="sub_caps" /> UPDATE: Remote Work &amp; Time Tracking</label>
-        </div>
-
-        <!-- Q4: Timesheet deadline -->
-        <div class="question">
-          <p>4. By when must employees submit their weekly timesheet?</p>
-          <label><input type="radio" name="q4" value="ts_thu3" /> By 3:00 PM every Thursday</label>
-          <label><input type="radio" name="q4" value="ts_fri3" /> By 3:00 PM every Friday</label>
-          <label><input type="radio" name="q4" value="ts_fri5" /> By 5:00 PM every Friday</label>
-          <label><input type="radio" name="q4" value="ts_mon9" /> By 9:00 AM every Monday</label>
-        </div>
-
-        <!-- Q5: On-site day rules -->
-        <div class="question">
-          <p>5. Which statement correctly reflects the on-site requirement?</p>
-          <label><input type="radio" name="q5" value="onsite_any2" /> Employees may choose any two days, Monday through Friday.</label>
-          <label><input type="radio" name="q5" value="onsite_tu_th" /> Employees must work on-site at least two days per week between Tuesday and Thursday.</label>
-          <label><input type="radio" name="q5" value="onsite_tu_th_only2" /> Employees must work on-site exactly two days per week, on Tuesday and Thursday only.</label>
-          <label><input type="radio" name="q5" value="onsite_mon_fri" /> Employees must be on-site all five days, Monday through Friday.</label>
-        </div>
-
-        <!-- Q6: Correct email address -->
-        <div class="question">
-          <p>6. Which email address should employees use for questions, according to the email?</p>
-          <label><input type="radio" name="q6" value="email_hr_ops_dot" /> hr.operations@company.com</label>
-          <label><input type="radio" name="q6" value="email_hr_ops_dash" /> hr-operations@company.com</label>
-          <label><input type="radio" name="q6" value="email_hr_ops_co" /> hr-operations@company.co</label>
-          <label><input type="radio" name="q6" value="email_hr_team" /> hr-team@company.com</label>
-        </div>
-
-        <!-- Q7: Scenario check -->
-        <div class="question">
-          <p>7. Which employee is fully compliant with the new policy?</p>
-          <label>
-            <input type="radio" name="q7" value="scen_a" />
-            A: Clocks in at 9:10 AM twice a week, works on-site Monday and Tuesday, submits timesheet Friday at 2:45 PM.
-          </label>
-          <label>
-            <input type="radio" name="q7" value="scen_b" />
-            B: Clocks in at 9:03 AM, works on-site Tuesday and Wednesday, submits timesheet Friday at 3:10 PM.
-          </label>
-          <label>
-            <input type="radio" name="q7" value="scen_c" />
-            C: Clocks in at 9:04 AM, works on-site Tuesday and Thursday, submits timesheet Friday at 2:55 PM.
-          </label>
-          <label>
-            <input type="radio" name="q7" value="scen_d" />
-            D: Clocks in at 8:55 AM, works fully remote, submits timesheet every other Friday at 3:00 PM.
-          </label>
-        </div>
-
-        <!-- Q8: Exact filename -->
-        <div class="question">
-          <p>8. The updated policy document is saved as <strong>HR_Remote-Policy_2024_v2.pdf</strong>. Which filename matches this <strong>exactly</strong>?</p>
-          <label><input type="radio" name="q8" value="file_v2_caps" /> HR_REMOTE-Policy_2024_v2.pdf</label>
-          <label><input type="radio" name="q8" value="file_v2_exact" /> HR_Remote-Policy_2024_v2.pdf</label>
-          <label><input type="radio" name="q8" value="file_v1" /> HR_Remote-Policy_2024_v1.pdf</label>
-          <label><input type="radio" name="q8" value="file_dash_year" /> HR-Remote-Policy-2024-v2.pdf</label>
+          <p>3. Which email address should employees use for questions, according to the email?</p>
+          <label><input type="radio" name="q3" value="email_hr_ops_dot" /> hr.operations@company.com</label>
+          <label><input type="radio" name="q3" value="email_hr_ops_dash" /> hr-operations@company.com</label>
+          <label><input type="radio" name="q3" value="email_hr_ops_co" /> hr-operations@company.co</label>
+          <label><input type="radio" name="q3" value="email_hr_team" /> hr-team@company.com</label>
         </div>
       </div>
 
@@ -412,14 +358,14 @@
     <span class="pill">Section 3 · Following Complex Instructions</span>
     <h2>Follow All Instructions Exactly</h2>
     <div class="card">
-      <p><strong>Read all questions before making any changes!</strong></p>
+      <p><strong>Read all instructions before making any changes!</strong></p>
       <p>
         Once you have read everything below, follow these instructions exactly:
       </p>
       <ol>
         <li>In the text box labeled <strong>“Favorite color”</strong>, type your favorite color.</li>
         <li>After typing it, erase the entire content so the box is completely blank.</li>
-        <li>Do <strong>not</strong> type anything else into that box after you have erased it.</li>
+        <li>Before erasing your favorite color, put 1 (one) space after your typed out color and then type your full name.</li>
         <li>Select exactly <span class="highlight">two</span> of the four checkboxes below.</li>
         <li>One of the boxes you select <strong>must be “C”</strong>, and you must <strong>not</strong> select box “A”.</li>
         <li>Once you are sure you have followed every instruction, click “Submit &amp; View Results”.</li>
@@ -502,7 +448,7 @@
   // ----- CONFIG: BENCHMARK TIMES (SECONDS) -----
   const BENCHMARKS = {
     section1: 90,   // 1.5 minutes
-    section2: 150,  // 2.5 minutes
+    section2: 90,   // 1.5 minutes (3 questions)
     section3: 90    // 1.5 minutes
   };
 
@@ -513,8 +459,8 @@
     scores: {},
     section3Behavior: {
       colorEverNonEmpty: false,
+      colorHadNameBeforeClear: false,
       colorWasCleared: false,
-      colorEditedAfterClear: false,
       checkboxEverChecked: false,
       checkboxUncheckedAfterCheck: false
     }
@@ -544,7 +490,7 @@
   }
 
   function formatSeconds(sec) {
-    return sec.toFixed(1) + "s";
+    return sec ? sec.toFixed(1) + "s" : "0.0s";
   }
 
   function badgeForTime(sec, benchmark) {
@@ -569,21 +515,23 @@
     }
   }
 
-  // SCORING: SECTION 1 (harsh exact-match: all-or-nothing)
+  // SCORING: SECTION 1 (exact-match rows only)
   function scoreSection1() {
-    // Correct error rows: row2, row4, row6
-    const correctSet = new Set(["row2", "row4", "row6"]);
+    // Rows that exactly match the baseline: row1, row4
+    const correctSet = new Set(["row1", "row4"]);
     const selected = Array.from(document.querySelectorAll('input[name="s1"]:checked'))
       .map(cb => cb.value);
 
     const selectedSet = new Set(selected);
     let allMatch = true;
 
+    // Every correct row must be selected
     correctSet.forEach(v => {
       if (!selectedSet.has(v)) {
         allMatch = false;
       }
     });
+    // No incorrect row may be selected
     selectedSet.forEach(v => {
       if (!correctSet.has(v)) {
         allMatch = false;
@@ -591,45 +539,34 @@
     });
 
     const total = correctSet.size;
-    const correct = allMatch ? total : 0; // harsh scoring
+    const correct = allMatch ? total : 0; // harsh: either you got all matches correct or not
 
     const accuracyPct = (correct / total) * 100;
     state.scores.section1 = { correct, total, accuracyPct };
   }
 
-  // SCORING: SECTION 2 (Policy email + detail MCQs; close answers flagged)
+  // SCORING: SECTION 2 (3 MCQs)
   function scoreSection2() {
     const correctAnswers = {
-      q1: "date_april1",               // Monday, April 1st
-      q2: "ex_contractors_interns",    // Contractors and interns
-      q3: "sub_exact",                 // Update: Remote Work & Time Tracking
-      q4: "ts_fri3",                   // By 3:00 PM every Friday
-      q5: "onsite_tu_th",              // At least two days, between Tue–Thu
-      q6: "email_hr_ops_dash",         // hr-operations@company.com
-      q7: "scen_c",                    // Fully compliant scenario
-      q8: "file_v2_exact"              // Exact filename
+      q1: "date_april1",             // Monday, April 1st
+      q2: "ex_contractors_interns",  // Contractors and interns
+      q3: "email_hr_ops_dash"        // hr-operations@company.com
     };
 
-    // "Close but wrong" answers – shows near-miss diligence issues
     const closeAnswers = {
       q1: ["date_april1_noday"],                 // Right date, missing weekday
-      q2: ["ex_contractors", "ex_interns"],      // Only half of exclusion
-      q3: ["sub_and", "sub_extra"],              // Text almost the same
-      q4: ["ts_fri5"],                            // Right day, wrong time
-      q5: ["onsite_tu_th_only2", "onsite_any2"], // Misreading "at least" / day range
-      q6: ["email_hr_ops_dot", "email_hr_ops_co"],
-      q7: ["scen_b"],                            // Almost compliant (late timesheet)
-      q8: ["file_v1", "file_dash_year"]          // Very similar filename
+      q2: ["ex_contractors", "ex_interns"],      // Half correct
+      q3: ["email_hr_ops_dot", "email_hr_ops_co"]// Very close email
     };
 
     let correct = 0;
-    const total = 8;
+    const total = 3;
     let closeWrong = 0;
 
     for (let i = 1; i <= total; i++) {
       const name = `q${i}`;
       const chosen = document.querySelector(`input[name="${name}"]:checked`);
-      if (!chosen) continue; // unanswered
+      if (!chosen) continue;
       const value = chosen.value;
 
       if (value === correctAnswers[name]) {
@@ -648,15 +585,18 @@
     const colorValue = document.getElementById("s3Color").value.trim();
     const checkboxes = Array.from(document.querySelectorAll('input[name="s3"]:checked')).map(cb => cb.value);
 
-    // We treat Section 3 as 3 distinct instruction checks
+    // 3 checks:
+    // 1) Color + space + full name existed at some point, and the field was eventually cleared.
+    // 2) Exactly two checkboxes selected.
+    // 3) One of the boxes is C, and A is not selected.
     let total = 3;
     let correct = 0;
 
     const behavior = state.section3Behavior;
     const colorCondition =
       behavior.colorEverNonEmpty &&
+      behavior.colorHadNameBeforeClear &&
       behavior.colorWasCleared &&
-      !behavior.colorEditedAfterClear &&
       colorValue === "";
 
     if (colorCondition) correct++;
@@ -676,19 +616,19 @@
     const s1TimeSec = state.durations.section1 || 0;
     document.getElementById("s1Accuracy").innerHTML = badgeForAccuracy(Math.round(s1.accuracyPct));
     document.getElementById("s1Time").innerHTML =
-      `${formatSeconds(s1TimeSec || 0)}<br/><span class="small">${badgeForTime(s1TimeSec, BENCHMARKS.section1)}</span>`;
+      `${formatSeconds(s1TimeSec)}<br/><span class="small">${badgeForTime(s1TimeSec, BENCHMARKS.section1)}</span>`;
 
     const s2 = state.scores.section2 || { accuracyPct: 0, closeWrong: 0 };
     const s2TimeSec = state.durations.section2 || 0;
     document.getElementById("s2Accuracy").innerHTML = badgeForAccuracy(Math.round(s2.accuracyPct));
     document.getElementById("s2Time").innerHTML =
-      `${formatSeconds(s2TimeSec || 0)}<br/><span class="small">${badgeForTime(s2TimeSec, BENCHMARKS.section2)}</span>`;
+      `${formatSeconds(s2TimeSec)}<br/><span class="small">${badgeForTime(s2TimeSec, BENCHMARKS.section2)}</span>`;
 
     const s3 = state.scores.section3 || { accuracyPct: 0 };
     const s3TimeSec = state.durations.section3 || 0;
     document.getElementById("s3Accuracy").innerHTML = badgeForAccuracy(Math.round(s3.accuracyPct));
     document.getElementById("s3Time").innerHTML =
-      `${formatSeconds(s3TimeSec || 0)}<br/><span class="small">${badgeForTime(s3TimeSec, BENCHMARKS.section3)}</span>`;
+      `${formatSeconds(s3TimeSec)}<br/><span class="small">${badgeForTime(s3TimeSec, BENCHMARKS.section3)}</span>`;
 
     const overallSummary = document.getElementById("overallSummary");
     const improvementList = document.getElementById("improvementList");
@@ -708,28 +648,28 @@
     if (s1.accuracyPct < 90) {
       const li = document.createElement("li");
       li.textContent =
-        "Section 1 (Data Detail): Practice scanning for subtle inconsistencies across multiple fields (name, ID, state, formatting). Slow down and compare items line by line.";
+        "Section 1 (Data Detail): Practice comparing records character-by-character. Even a single misplaced letter, digit, or punctuation mark changes the meaning.";
       improvementList.appendChild(li);
     }
 
     if (s2.accuracyPct < 90) {
       const li = document.createElement("li");
       li.textContent =
-        "Section 2 (Reading & Detail): Focus on capturing exact requirements in written communication (dates, times, exclusions, email addresses, filenames). Many errors come from assuming instead of verifying.";
+        "Section 2 (Reading & Detail): Focus on capturing exact requirements in written communication (dates, exclusions, and contact details). Small differences can change the entire instruction.";
       improvementList.appendChild(li);
     }
 
     if (s2.closeWrong && s2.closeWrong > 0) {
       const li = document.createElement("li");
       li.textContent =
-        `Section 2: You had ${s2.closeWrong} answer(s) that were very close but still incorrect. This often indicates you noticed the general pattern but missed one key word, number, or condition.`;
+        `Section 2: You had ${s2.closeWrong} answer(s) that were very close but still incorrect. This suggests you understood the general idea but missed a key word or detail.`;
       improvementList.appendChild(li);
     }
 
     if (s3.accuracyPct < 90) {
       const li = document.createElement("li");
       li.textContent =
-        "Section 3 (Instructions): Before acting, read all instructions fully and then mentally check your actions against each step. This skill is critical for complex processes and change requests.";
+        "Section 3 (Instructions): Before acting, read all steps in order and mentally check your actions against each point. This mirrors following complex process documentation.";
       improvementList.appendChild(li);
     }
 
@@ -750,19 +690,19 @@
     const li1 = document.createElement("li");
     li1.textContent = b.colorEverNonEmpty
       ? "Favorite color box: You entered a value at least once (as instructed)."
-      : "Favorite color box: You never entered a value, which does not follow the instruction to type your favorite color before erasing it.";
+      : "Favorite color box: No value was ever entered, which does not follow the instruction to type your favorite color.";
     behaviorList.appendChild(li1);
 
     const li2 = document.createElement("li");
-    li2.textContent = b.colorWasCleared
-      ? "Favorite color box: You cleared the text at least once."
-      : "Favorite color box: The text was never fully cleared.";
+    li2.textContent = b.colorHadNameBeforeClear
+      ? "Favorite color box: At some point, the field contained your color plus additional text (such as a name) before being cleared."
+      : "Favorite color box: There is no indication that both your color and your full name were entered before clearing the field.";
     behaviorList.appendChild(li2);
 
     const li3 = document.createElement("li");
-    li3.textContent = b.colorEditedAfterClear
-      ? "Favorite color box: You typed again after erasing, which goes against the instruction not to add anything after clearing the field."
-      : "Favorite color box: You did not type again after clearing the field.";
+    li3.textContent = b.colorWasCleared
+      ? "Favorite color box: The field was fully cleared at least once."
+      : "Favorite color box: The field was never fully cleared to blank.";
     behaviorList.appendChild(li3);
 
     const li4 = document.createElement("li");
@@ -773,8 +713,8 @@
 
     const li5 = document.createElement("li");
     li5.textContent = b.checkboxUncheckedAfterCheck
-      ? "Checkboxes: At some point, all previously selected boxes were cleared, suggesting changes after initial actions."
-      : "Checkboxes: There is no indication that all selected boxes were later cleared.";
+      ? "Checkboxes: All selected options were cleared at least once, indicating you changed your selections."
+      : "Checkboxes: There is no indication that all selected checkboxes were cleared at any point.";
     behaviorList.appendChild(li5);
   }
 
@@ -790,7 +730,7 @@
       stopTimer("section1");
       scoreSection1();
       showSection("section2");
-      // timer for section2 starts after reading is hidden (when questions begin)
+      // timer for section2 starts after reading is hidden
     });
 
     // Hide reading & show questions (start timer)
@@ -822,10 +762,13 @@
         if (!b.colorEverNonEmpty) {
           b.colorEverNonEmpty = true;
         }
-        if (b.colorWasCleared) {
-          b.colorEditedAfterClear = true;
+        // Check for "color + space + name" pattern (at least two non-empty chunks)
+        const parts = val.split(" ").filter(p => p.trim().length > 0);
+        if (parts.length >= 2) {
+          b.colorHadNameBeforeClear = true;
         }
       } else {
+        // Field cleared after having content
         if (b.colorEverNonEmpty) {
           b.colorWasCleared = true;
         }
