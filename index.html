@@ -220,24 +220,39 @@
     <span class="pill">Section 1 · Attention to Detail (Employee Record Match)</span>
     <h2>Compare Each Record to the Baseline</h2>
     <p>
-      Below is a <strong>baseline employee record</strong>. Read it carefully. Then review the records beneath it.
-      Some records match the baseline <strong>exactly</strong>, and others have one or more small differences
-      (such as spacing, punctuation, digits, or spelling).
+      Below is a <strong>baseline employee record</strong>. Review each field carefully.
+      Then review the records beneath it. Some records match the baseline <strong>exactly</strong>,
+      and others have one or more small differences (such as spacing, punctuation, digits, or spelling).
     </p>
     <p>
       Your task: <strong>Select every row that matches the baseline record exactly.</strong>
       If a row has <em>any</em> difference at all, leave it unchecked.
     </p>
 
+    <!-- Baseline split into separate fields so it can't be copied as one string -->
     <div class="card mono">
-      <p><strong>Baseline Record:</strong></p>
-      <p>
-        EMP-2047 · Name: Jonathan Smith · Dept: Finance · Phone: (555) 201-4488 · State: MN ·
-        Email: jonathan.smith@example.com · Manager: Kelly Brown · Title: Financial Analyst ·
-        Location: Minneapolis, MN · Status: Active · Hire Date: 06/14/2021 · Shift: Mon–Fri, 8:00–5:00
+      <p><strong>Baseline Record (Jonathan Smith):</strong></p>
+      <ul>
+        <li>Employee ID: <strong>EMP-2047</strong></li>
+        <li>Name: <strong>Jonathan Smith</strong></li>
+        <li>Dept: <strong>Finance</strong></li>
+        <li>Phone: <strong>(555) 201-4488</strong></li>
+        <li>State: <strong>MN</strong></li>
+        <li>Email: <strong>jonathan.smith@example.com</strong></li>
+        <li>Manager: <strong>Kelly Brown</strong></li>
+        <li>Title: <strong>Financial Analyst</strong></li>
+        <li>Location: <strong>Minneapolis, MN</strong></li>
+        <li>Status: <strong>Active</strong></li>
+        <li>Hire Date: <strong>06/14/2021</strong></li>
+        <li>Shift: <strong>Mon–Fri, 8:00–5:00</strong></li>
+      </ul>
+      <p class="small">
+        Compare every line below to these exact values. Assume that even a single character
+        difference (letter, digit, punctuation, or spacing) makes the record a mismatch.
       </p>
     </div>
 
+    <!-- Records to evaluate (unchanged so scoring still works) -->
     <div class="card mono">
       <label>
         <input type="checkbox" name="s1" value="row1" />
@@ -270,10 +285,6 @@
            Location: Minneapolis, MN · Status: Active · Hire Date: 06/14/2021 · Shift: Mon–Fri, 8:00–5:00
       </label>
     </div>
-
-    <p class="small">
-      Hint: Assume that even a single character difference (letter, digit, punctuation, or spacing) makes the record a mismatch.
-    </p>
 
     <div class="btn-row">
       <button id="s1Next">Next Section</button>
@@ -803,3 +814,4 @@
 </script>
 </body>
 </html>
+
